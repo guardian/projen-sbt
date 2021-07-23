@@ -1,10 +1,10 @@
 const { JsiiProject } = require('projen');
 const project = new JsiiProject({
-  author: 'Akash Askoolum',
-  authorAddress: 'akash1810@gmail.com',
+  author: 'The Guardian',
+  authorAddress: 'devx@theguardian.com',
   defaultReleaseBranch: 'main',
-  name: 'projen-sbt',
-  repositoryUrl: 'https://github.com/akash1810/projen-sbt.git',
+  name: '@guardian/projen-sbt',
+  repositoryUrl: 'https://github.com/guardian/projen-sbt.git',
 
   // deps: [],                          /* Runtime dependencies of this module. */
   // description: undefined,            /* The description is just a string that helps people understand the purpose of the package. */
