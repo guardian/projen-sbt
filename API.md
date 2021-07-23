@@ -151,6 +151,18 @@ To disable set `stale` to `false`.
 
 ---
 
+##### `projenrcJs`<sup>Optional</sup> <a name="@guardian/projen-sbt.SbtProjectOptions.property.projenrcJs"></a>
+
+- *Type:* `boolean`
+
+---
+
+##### `projenrcJsOptions`<sup>Optional</sup> <a name="@guardian/projen-sbt.SbtProjectOptions.property.projenrcJsOptions"></a>
+
+- *Type:* [`projen.javascript.ProjenrcOptions`](#projen.javascript.ProjenrcOptions)
+
+---
+
 ##### `sbtVersion`<sup>Optional</sup> <a name="@guardian/projen-sbt.SbtProjectOptions.property.sbtVersion"></a>
 
 - *Type:* `string`
