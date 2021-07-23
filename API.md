@@ -3,6 +3,22 @@
 
 ## Structs <a name="Structs"></a>
 
+### SbtPlugin <a name="@guardian/projen-sbt.SbtPlugin"></a>
+
+#### Initializer <a name="[object Object].Initializer"></a>
+
+```typescript
+import { SbtPlugin } from '@guardian/projen-sbt'
+
+const sbtPlugin: SbtPlugin = { ... }
+```
+
+##### `line`<sup>Required</sup> <a name="@guardian/projen-sbt.SbtPlugin.property.line"></a>
+
+- *Type:* `string`
+
+---
+
 ### SbtProjectOptions <a name="@guardian/projen-sbt.SbtProjectOptions"></a>
 
 #### Initializer <a name="[object Object].Initializer"></a>
@@ -151,6 +167,12 @@ To disable set `stale` to `false`.
 
 ---
 
+##### `projectVersion`<sup>Optional</sup> <a name="@guardian/projen-sbt.SbtProjectOptions.property.projectVersion"></a>
+
+- *Type:* `string`
+
+---
+
 ##### `projenrcJs`<sup>Optional</sup> <a name="@guardian/projen-sbt.SbtProjectOptions.property.projenrcJs"></a>
 
 - *Type:* `boolean`
@@ -163,7 +185,19 @@ To disable set `stale` to `false`.
 
 ---
 
+##### `sbtPlugins`<sup>Optional</sup> <a name="@guardian/projen-sbt.SbtProjectOptions.property.sbtPlugins"></a>
+
+- *Type:* [`@guardian/projen-sbt.SbtPlugin`](#@guardian/projen-sbt.SbtPlugin)[]
+
+---
+
 ##### `sbtVersion`<sup>Optional</sup> <a name="@guardian/projen-sbt.SbtProjectOptions.property.sbtVersion"></a>
+
+- *Type:* `string`
+
+---
+
+##### `scalaVersion`<sup>Optional</sup> <a name="@guardian/projen-sbt.SbtProjectOptions.property.scalaVersion"></a>
 
 - *Type:* `string`
 
@@ -187,8 +221,28 @@ new SbtProject(options: SbtProjectOptions)
 
 ---
 
+#### Methods <a name="Methods"></a>
+
+##### `addPlugins` <a name="@guardian/projen-sbt.SbtProject.addPlugins"></a>
+
+```typescript
+public addPlugins(plugins: SbtPlugin)
+```
+
+###### `plugins`<sup>Required</sup> <a name="@guardian/projen-sbt.SbtProject.parameter.plugins"></a>
+
+- *Type:* [`@guardian/projen-sbt.SbtPlugin`](#@guardian/projen-sbt.SbtPlugin)
+
+---
 
 
+#### Properties <a name="Properties"></a>
+
+##### `sbtPluginsFile`<sup>Required</sup> <a name="@guardian/projen-sbt.SbtProject.property.sbtPluginsFile"></a>
+
+- *Type:* [`projen.SourceCode`](#projen.SourceCode)
+
+---
 
 
 
