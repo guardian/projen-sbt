@@ -40,7 +40,6 @@ yarn-error.log*
 !/.github/workflows/upgrade-dependencies.yml
 !/.mergify.yml
 !/.npmignore
-!/.nvmrc
 !/.projen/deps.json
 !/.projen/tasks.json
 !/.projenrc.js

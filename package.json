@@ -1,8 +1,8 @@
 {
-  "name": "@guardian/projen-sbt",
+  "name": "projen-sbt",
   "repository": {
     "type": "git",
-    "url": "https://github.com/guardian/projen-sbt.git"
+    "url": "git@github.com:guardian/projen-sbt.git"
   },
   "scripts": {
     "clobber": "npx projen clobber",
@@ -16,10 +16,10 @@
     "unbump": "npx projen unbump",
     "upgrade-dependencies": "npx projen upgrade-dependencies",
     "upgrade-projen": "npx projen upgrade-projen",
-    "default": "npx projen default",
     "watch": "npx projen watch",
     "package": "npx projen package",
     "eslint": "npx projen eslint",
+    "default": "npx projen default",
     "compat": "npx projen compat",
     "publish:npm": "npx projen publish:npm",
     "docgen": "npx projen docgen",
@@ -28,13 +28,13 @@
     "start": "npx projen start"
   },
   "author": {
-    "name": "The Guardian",
-    "email": "devx@theguardian.com",
+    "name": "Akash Askoolum",
+    "email": "akash1810@gmail.com",
     "organization": false
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",
-    "@types/node": "^14.17.3",
+    "@types/node": "^10.17.0",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
     "eslint": "^7.31.0",
@@ -52,18 +52,10 @@
     "projen": "0.27.6",
     "standard-version": "^9",
     "ts-jest": "^27.0.4",
+    "ts-node": "^9",
     "typescript": "^4.3.5"
   },
-  "peerDependencies": {
-    "projen": "0.27.6"
-  },
-  "dependencies": {
-    "projen": "0.27.6"
-  },
   "bundledDependencies": [],
-  "engines": {
-    "node": ">= 14.17.3 <= 14.17.3"
-  },
   "main": "lib/index.js",
   "license": "Apache-2.0",
   "version": "0.0.0",
