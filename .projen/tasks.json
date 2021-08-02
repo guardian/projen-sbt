@@ -209,7 +209,7 @@
       "name": "default",
       "steps": [
         {
-          "exec": "ts-node .projenrc.ts"
+          "exec": "ts-node --skip-project .projenrc.ts"
         }
       ]
     },

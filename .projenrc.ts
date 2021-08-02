@@ -1,7 +1,7 @@
 import { JsiiProject, SourceCode } from 'projen';
 
 const nodeLTSVersion = '14.17.3';
-const projenDep = 'projen@0.27.6';
+const projenDep = 'projen@0.27.13';
 
 const project = new JsiiProject({
   projenrcTs: true,
