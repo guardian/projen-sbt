@@ -1,8 +1,8 @@
 {
-  "name": "@guardian/projen-sbt",
+  "name": "@guardian/projen-scala-sbt",
   "repository": {
     "type": "git",
-    "url": "https://github.com/guardian/projen-sbt.git"
+    "url": "https://github.com/guardian/projen-scala-sbt.git"
   },
   "scripts": {
     "clobber": "npx projen clobber",
@@ -14,7 +14,8 @@
     "test:update": "npx projen test:update",
     "bump": "npx projen bump",
     "unbump": "npx projen unbump",
-    "upgrade-dependencies": "npx projen upgrade-dependencies",
+    "publish:github": "npx projen publish:github",
+    "upgrade": "npx projen upgrade",
     "upgrade-projen": "npx projen upgrade-projen",
     "watch": "npx projen watch",
     "package": "npx projen package",
@@ -48,17 +49,17 @@
     "jsii-pacmak": "^1.32.0",
     "json-schema": "^0.3.0",
     "npm-check-updates": "^11",
-    "projen": "0.27.13",
+    "projen": "0.27.31",
     "standard-version": "^9",
     "ts-jest": "^27.0.4",
     "ts-node": "^9",
     "typescript": "^4.3.5"
   },
   "peerDependencies": {
-    "projen": "0.27.13"
+    "projen": "0.27.31"
   },
   "dependencies": {
-    "projen": "0.27.13"
+    "projen": "0.27.31"
   },
   "bundledDependencies": [],
   "engines": {
