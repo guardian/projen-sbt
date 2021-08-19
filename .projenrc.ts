@@ -1,15 +1,15 @@
 import { JsiiProject, SourceCode } from 'projen';
 
 const nodeLTSVersion = '14.17.3';
-const projenDep = 'projen@0.27.13';
+const projenDep = 'projen@0.27.31';
 
 const project = new JsiiProject({
   projenrcTs: true,
   author: 'The Guardian',
   authorAddress: 'devx@theguardian.com',
   defaultReleaseBranch: 'main',
-  name: '@guardian/projen-sbt',
-  repositoryUrl: 'https://github.com/guardian/projen-sbt.git',
+  name: '@guardian/projen-scala-sbt',
+  repositoryUrl: 'https://github.com/guardian/projen-scala-sbt.git',
   minNodeVersion: nodeLTSVersion,
   maxNodeVersion: nodeLTSVersion,
   workflowNodeVersion: nodeLTSVersion,
