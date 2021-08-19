@@ -23,6 +23,11 @@ const project = new JsiiProject({
   // release: undefined,                /* Add release management to this project. */
 });
 
+const packageJson = project.tryFindObjectFile('package.json');
+if (packageJson) {
+  packageJson.addOverride('publishConfig', { access: 'public' });
+}
+
 const nvmrc = new SourceCode(project, '.nvmrc');
 nvmrc.line(nodeLTSVersion);
 
