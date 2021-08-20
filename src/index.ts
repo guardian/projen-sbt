@@ -15,6 +15,8 @@ export interface SbtProjectOptions extends ProjectOptions {
 
   readonly sbtPlugins?: SbtPlugin[];
 
+  readonly libraryDependencies?: SbtLibraryDependency[];
+
   readonly projenrcJs?: boolean;
   readonly projenrcJsOptions?: ProjenrcOptions;
 }
@@ -29,8 +31,24 @@ const gitIgnored = [
   '.bsp',
 ];
 
+export type SbtLibraryDependency = string;
+
 export class SbtProject extends pj.Project {
+  public static javaDep(org: string, name: string, revision: string, configurations?: string) {
+    return SbtProject.dep(org, '%', name, revision, configurations);
+  }
+
+  public static scalaDep(org: string, name: string, revision: string, configurations?: string) {
+    return SbtProject.dep(org, '%%', name, revision, configurations);
+  }
+
+  private static dep(org: string, depSymbol: string, name: string, revision: string, configurations?: string): SbtLibraryDependency {
+    const maybeConfigurations = configurations ? ` % "${configurations}"` : '';
+    return `"${org}" ${depSymbol} "${name}" % "${revision}"${maybeConfigurations}`;
+  }
+
   readonly sbtPluginsFile: pj.SourceCode;
+  readonly buildSbtFile: pj.SourceCode;
 
   constructor(options: SbtProjectOptions) {
     super(options);
@@ -43,11 +61,15 @@ export class SbtProject extends pj.Project {
     buildPropertiesFile.line(`# ${FileBase.PROJEN_MARKER}`);
     buildPropertiesFile.line(`sbt.version=${sbtVersion}`);
 
-    const buildSbtFile = new pj.SourceCode(this, 'build.sbt');
-    buildSbtFile.line(`// ${FileBase.PROJEN_MARKER}`);
-    buildSbtFile.line(`name := "${options.name}"`);
-    buildSbtFile.line(`version := "${projectVersion}"`);
-    buildSbtFile.line(`scalaVersion in ThisBuild := "${scalaVersion}"`);
+    this.buildSbtFile = new pj.SourceCode(this, 'build.sbt');
+    this.buildSbtFile.line(`// ${FileBase.PROJEN_MARKER}`);
+    this.buildSbtFile.line(`name := "${options.name}"`);
+    this.buildSbtFile.line(`version := "${projectVersion}"`);
+    this.buildSbtFile.line(`scalaVersion in ThisBuild := "${scalaVersion}"`);
+
+    options.libraryDependencies?.forEach(dep => {
+      this.buildSbtFile.line(`libraryDependencies += ${dep}`);
+    });
 
     this.sbtPluginsFile = new pj.SourceCode(this, 'project/plugins.sbt');
     this.sbtPluginsFile.line(`// ${FileBase.PROJEN_MARKER}`);

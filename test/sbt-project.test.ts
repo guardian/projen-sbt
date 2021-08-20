@@ -56,4 +56,16 @@ describe('The SbtProject type', () => {
     const snapshot = synthSnapshot(sbtProject) as SynthOutput;
     expect(snapshot['project/plugins.sbt']).toMatchSnapshot();
   });
+
+  test('adding library dependencies', () => {
+    const sbtProject = new SbtProject({
+      ...baseOptions,
+      libraryDependencies: [
+        SbtProject.javaDep('joda-time', 'joda-time', '2.8.1'),
+        SbtProject.scalaDep('org.scalamock', 'scalamock', '4.0.0', 'test'),
+      ],
+    });
+    const snapshot = synthSnapshot(sbtProject) as SynthOutput;
+    expect(snapshot['build.sbt']).toMatchSnapshot();
+  });
 });
