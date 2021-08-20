@@ -22,6 +22,12 @@ const defaultSbtVersion = '1.5.5';
 const defaultProjectVersion = '1.0-SNAPSHOT';
 const defaultScalaVersion = '2.13.6';
 
+const gitIgnored = [
+  'target/',
+  '.idea',
+  '.bsp',
+];
+
 export class SbtProject extends pj.Project {
   readonly sbtPluginsFile: pj.SourceCode;
 
@@ -54,6 +60,8 @@ export class SbtProject extends pj.Project {
     if (projenrcJs) {
       new Projenrc(this, options.projenrcJsOptions);
     }
+
+    gitIgnored.forEach(pattern => this.gitignore.exclude(pattern));
   }
 
   public addPlugins(...plugins: SbtPlugin[]) {
