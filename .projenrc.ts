@@ -31,4 +31,6 @@ if (packageJson) {
 const nvmrc = new SourceCode(project, '.nvmrc');
 nvmrc.line(nodeLTSVersion);
 
+project.addExcludeFromCleanup('test/__snapshots__/**');
+
 project.synth();
