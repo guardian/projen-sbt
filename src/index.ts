@@ -2,6 +2,7 @@ import * as pj from 'projen';
 import { FileBase } from 'projen';
 import { Projenrc, ProjenrcOptions } from 'projen/lib/javascript';
 import { ProjectOptions } from 'projen/lib/project';
+import { maxNodeVersion } from './versions';
 
 export interface SbtPlugin {
   // TODO: for now this is a string but we could type it more nicely
@@ -26,7 +27,7 @@ const defaultProjectVersion = '1.0-SNAPSHOT';
 const defaultScalaVersion = '2.13.6';
 
 const gitIgnored = [
-  'target/',
+  '**/target/',
   '.idea',
   '.bsp',
 ];
@@ -81,11 +82,56 @@ export class SbtProject extends pj.Project {
       exec: 'sbt compile',
     });
 
+    this.addTask('build', {
+      exec: 'sbt clean compile test',
+    });
+
     // generate a projen rc file (without this none is generated)
     const projenrcJs = options.projenrcJs ?? true;
     if (projenrcJs) {
       new Projenrc(this, options.projenrcJsOptions);
     }
+
+    const ciWorkflow = this.github?.addWorkflow('Build');
+
+    ciWorkflow?.on({
+      pullRequest: {},
+      workflowDispatch: {},
+    });
+
+    ciWorkflow?.addJobs({
+      Build: {
+        runsOn: 'ubuntu-latest',
+        steps: [
+          { uses: 'actions/checkout@v2' },
+          {
+            uses: 'actions/setup-node@v2.1.5',
+            with: { 'node-version': maxNodeVersion },
+          },
+          // from https://github.com/actions/cache/blob/master/examples.md#scala---sbt
+          // TODO: fix to include coursier
+          {
+            uses: 'actions/cache@v2',
+            with: {
+              path: ['~/.ivy2/cache', '~/.sbt'].join('\n'),
+              key: "${{ runner.os }}-sbt-${{ hashFiles('**/build.sbt') }}",
+            },
+          },
+          {
+            uses: 'actions/setup-java@v2',
+            with: { 'java-version': '8', 'distribution': 'adopt' },
+          },
+          {
+            run: 'yarn',
+          },
+          {
+            run: 'npx projen build',
+          },
+        ],
+        permissions: {},
+      },
+    });
+
 
     gitIgnored.forEach(pattern => this.gitignore.exclude(pattern));
   }
