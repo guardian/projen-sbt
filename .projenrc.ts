@@ -1,4 +1,4 @@
-import { JsiiProject, SourceCode } from 'projen';
+import { FileBase, JsiiProject, SourceCode } from 'projen';
 
 const nodeLTSVersion = '14.17.3';
 const projenDep = 'projen@0.27.31';
@@ -15,6 +15,7 @@ const project = new JsiiProject({
   workflowNodeVersion: nodeLTSVersion,
   deps: [projenDep],
   peerDeps: [projenDep],
+  mutableBuild: false,
   // deps: [],                          /* Runtime dependencies of this module. */
   // description: undefined,            /* The description is just a string that helps people understand the purpose of the package. */
   // devDeps: [],                       /* Build dependencies for this module. */
@@ -30,5 +31,13 @@ if (packageJson) {
 
 const nvmrc = new SourceCode(project, '.nvmrc');
 nvmrc.line(nodeLTSVersion);
+
+const nodeVersions = new SourceCode(project, 'src/versions.ts');
+nodeVersions.line(`// ${FileBase.PROJEN_MARKER}`);
+nodeVersions.line(`export const minNodeVersion = '${project.minNodeVersion}';`);
+nodeVersions.line(`export const maxNodeVersion = '${project.maxNodeVersion}';`);
+nodeVersions.line();
+
+project.addExcludeFromCleanup('test/__snapshots__/**');
 
 project.synth();
