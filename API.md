@@ -200,6 +200,12 @@ Enabled by default for root projects. Disabled for non-root projects.
 
 ---
 
+##### `libraryDependencies`<sup>Optional</sup> <a name="@guardian/projen-scala-sbt.SbtProjectOptions.property.libraryDependencies"></a>
+
+- *Type:* `string`[]
+
+---
+
 ##### `projectVersion`<sup>Optional</sup> <a name="@guardian/projen-scala-sbt.SbtProjectOptions.property.projectVersion"></a>
 
 - *Type:* `string`
@@ -268,8 +274,79 @@ public addPlugins(plugins: SbtPlugin)
 
 ---
 
+#### Static Functions <a name="Static Functions"></a>
+
+##### `javaDep` <a name="@guardian/projen-scala-sbt.SbtProject.javaDep"></a>
+
+```typescript
+import { SbtProject } from '@guardian/projen-scala-sbt'
+
+SbtProject.javaDep(org: string, name: string, revision: string, configurations?: string)
+```
+
+###### `org`<sup>Required</sup> <a name="@guardian/projen-scala-sbt.SbtProject.parameter.org"></a>
+
+- *Type:* `string`
+
+---
+
+###### `name`<sup>Required</sup> <a name="@guardian/projen-scala-sbt.SbtProject.parameter.name"></a>
+
+- *Type:* `string`
+
+---
+
+###### `revision`<sup>Required</sup> <a name="@guardian/projen-scala-sbt.SbtProject.parameter.revision"></a>
+
+- *Type:* `string`
+
+---
+
+###### `configurations`<sup>Optional</sup> <a name="@guardian/projen-scala-sbt.SbtProject.parameter.configurations"></a>
+
+- *Type:* `string`
+
+---
+
+##### `scalaDep` <a name="@guardian/projen-scala-sbt.SbtProject.scalaDep"></a>
+
+```typescript
+import { SbtProject } from '@guardian/projen-scala-sbt'
+
+SbtProject.scalaDep(org: string, name: string, revision: string, configurations?: string)
+```
+
+###### `org`<sup>Required</sup> <a name="@guardian/projen-scala-sbt.SbtProject.parameter.org"></a>
+
+- *Type:* `string`
+
+---
+
+###### `name`<sup>Required</sup> <a name="@guardian/projen-scala-sbt.SbtProject.parameter.name"></a>
+
+- *Type:* `string`
+
+---
+
+###### `revision`<sup>Required</sup> <a name="@guardian/projen-scala-sbt.SbtProject.parameter.revision"></a>
+
+- *Type:* `string`
+
+---
+
+###### `configurations`<sup>Optional</sup> <a name="@guardian/projen-scala-sbt.SbtProject.parameter.configurations"></a>
+
+- *Type:* `string`
+
+---
 
 #### Properties <a name="Properties"></a>
+
+##### `buildSbtFile`<sup>Required</sup> <a name="@guardian/projen-scala-sbt.SbtProject.property.buildSbtFile"></a>
+
+- *Type:* [`projen.SourceCode`](#projen.SourceCode)
+
+---
 
 ##### `sbtPluginsFile`<sup>Required</sup> <a name="@guardian/projen-scala-sbt.SbtProject.property.sbtPluginsFile"></a>
 
