@@ -1,4 +1,5 @@
 import * as pj from 'projen';
+import { FileBase } from 'projen';
 import { Projenrc, ProjenrcOptions } from 'projen/lib/javascript';
 import { ProjectOptions } from 'projen/lib/project';
 
@@ -39,14 +40,17 @@ export class SbtProject extends pj.Project {
     const scalaVersion = options.scalaVersion ?? defaultScalaVersion;
 
     const buildPropertiesFile = new pj.SourceCode(this, 'project/build.properties');
+    buildPropertiesFile.line(`# ${FileBase.PROJEN_MARKER}`);
     buildPropertiesFile.line(`sbt.version=${sbtVersion}`);
 
     const buildSbtFile = new pj.SourceCode(this, 'build.sbt');
+    buildSbtFile.line(`// ${FileBase.PROJEN_MARKER}`);
     buildSbtFile.line(`name := "${options.name}"`);
     buildSbtFile.line(`version := "${projectVersion}"`);
     buildSbtFile.line(`scalaVersion in ThisBuild := "${scalaVersion}"`);
 
     this.sbtPluginsFile = new pj.SourceCode(this, 'project/plugins.sbt');
+    this.sbtPluginsFile.line(`// ${FileBase.PROJEN_MARKER}`);
     if (options.sbtPlugins) {
       this.addPlugins(...options.sbtPlugins);
     }
