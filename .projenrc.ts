@@ -1,6 +1,7 @@
 import { FileBase, JsiiProject, SourceCode } from 'projen';
 
-const nodeLTSVersion = '14.17.3';
+const minNodeVersion = '14.17.3';
+const maxNodeVersion = '18.10.0'
 const projenDep = 'projen@0.27.31';
 
 const project = new JsiiProject({
@@ -10,9 +11,9 @@ const project = new JsiiProject({
   defaultReleaseBranch: 'main',
   name: '@guardian/projen-scala-sbt',
   repositoryUrl: 'https://github.com/guardian/projen-scala-sbt.git',
-  minNodeVersion: nodeLTSVersion,
-  maxNodeVersion: nodeLTSVersion,
-  workflowNodeVersion: nodeLTSVersion,
+  minNodeVersion: minNodeVersion,
+  maxNodeVersion: maxNodeVersion,
+  workflowNodeVersion: maxNodeVersion,
   deps: [projenDep],
   peerDeps: [projenDep],
   mutableBuild: false,
@@ -30,7 +31,7 @@ if (packageJson) {
 }
 
 const nvmrc = new SourceCode(project, '.nvmrc');
-nvmrc.line(nodeLTSVersion);
+nvmrc.line(maxNodeVersion);
 
 const nodeVersions = new SourceCode(project, 'src/versions.ts');
 nodeVersions.line(`// ${FileBase.PROJEN_MARKER}`);
